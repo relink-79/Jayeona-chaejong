@@ -13,7 +13,7 @@
 │   ├── restaurant_classifier.py
 │   └── requirements.txt
 ├── makemodel/             # Gemma 모델 Fine-tuning (QLoRA)
-│   ├── Tunning.ipynb
+│   ├── Tunning.ipynb      # Gemma 모델 튜닝 코드
 │   └── requirements.txt
 ├── makeweb/               # 블로그 생성 웹 애플리케이션 (FastAPI)
 │   ├── main.py
@@ -23,6 +23,11 @@
 └── README.MD
 ```
 
+##주요코드
+make web은 웹 사이트를 구동하기 위한 코드이고, 모델을 튜닝할때 만드는 코드는 makemodel에 있습니다.
+Tunning.ipynb 를 보면 데이터를 어떻게 가져와서 map하고 Qlora 하는지 적혀있습니다.
+
+
 ## 주요 기술
 
 -   **Backend:** FastAPI
@@ -30,3 +35,4 @@
 -   **Crawling:** Selenium, BeautifulSoup
 -   **ML/DL:** PyTorch, Transformers, PEFT (QLoRA), Ollama
 -   **Model:** Google Gemma
+
