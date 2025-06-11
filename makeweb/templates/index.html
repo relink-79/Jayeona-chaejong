@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>블로그 포스팅 자동생성기</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 블로그 포스팅 자동생성기</h1>
+        <p class="subtitle">AI가 도와주는 똑똑한 블로그 작성</p>
+        
+        <form id="blogForm">
+            <!-- 카테고리 선택 -->
+            <div class="form-group">
+                <label for="category">📝 카테고리 선택:</label>
+                <div class="category-buttons">
+                    <button type="button" class="category-btn" data-category="카페">☕ 카페</button>
+                    <button type="button" class="category-btn" data-category="맛집">🍽️ 맛집</button>
+                    <button type="button" class="category-btn" data-category="리뷰">⭐ 리뷰</button>
+                </div>
+                <input type="hidden" id="category" name="category" required>
+            </div>
+
+            <!-- 동적 필드들 -->
+            <div id="dynamicFields" class="dynamic-fields" style="display: none;">
+                <!-- 카페 필드 -->
+                <div id="cafeFields" class="field-group" style="display: none;">
+                    <h3>☕ 카페 정보</h3>
+                    <div class="input-row">
+                        <input type="text" name="cafe_store_name" placeholder="가게이름">
+                        <input type="text" name="cafe_taste" placeholder="맛 (예: 부드럽고 달콤함)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="cafe_view" placeholder="경치 (예: 바다가 보임, 도심 뷰)">
+                        <input type="text" name="cafe_atmosphere" placeholder="분위기 (예: 아늑함, 모던함)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="cafe_price" placeholder="가격 (예: 가성비 좋음, 조금 비쌈)">
+                    </div>
+                </div>
+
+                <!-- 맛집 필드 -->
+                <div id="restaurantFields" class="field-group" style="display: none;">
+                    <h3>🍽️ 맛집 정보</h3>
+                    <div class="input-row">
+                        <input type="text" name="restaurant_store_name" placeholder="가게이름">
+                        <input type="text" name="restaurant_taste" placeholder="맛 (예: 진하고 맛있음)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="restaurant_food_type" placeholder="음식종류 (예: 파스타, 삼겹살)">
+                        <input type="text" name="restaurant_rating" placeholder="평가 (예: 추천함, 재방문 의사)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="restaurant_price" placeholder="가격 (예: 가성비 좋음, 조금 비쌈)">
+                    </div>
+                </div>
+
+                <!-- 리뷰 필드 -->
+                <div id="reviewFields" class="field-group" style="display: none;">
+                    <h3>⭐ 제품 리뷰 정보</h3>
+                    <div class="input-row">
+                        <input type="text" name="review_product_name" placeholder="제품이름">
+                        <input type="text" name="review_category" placeholder="종류 (예: 전자제품, 화장품)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="review_rating" placeholder="평가 (예: 만족함, 추천함)">
+                        <input type="text" name="review_purpose" placeholder="용도 (예: 일상용, 선물용)">
+                    </div>
+                    <div class="input-row">
+                        <input type="text" name="review_price" placeholder="가격 (예: 가성비 좋음, 조금 비쌈)">
+                    </div>
+                </div>
+
+                <!-- 상세내용 -->
+                <div class="form-group">
+                    <label for="details">📄 상세내용 (Tab으로 자동완성):</label>
+                    <div class="autocomplete-wrapper">
+                        <textarea id="details" name="details" rows="6" placeholder="추가로 포함하고 싶은 상세한 내용을 입력해주세요. 예를 들어 특별한 경험, 추천 메뉴, 방문 팁 등을 자유롭게 작성하세요."></textarea>
+                        <div id="suggestion-overlay" class="suggestion-overlay"></div>
+                    </div>
+                </div>
+
+                <!-- 버튼들 -->
+                <div class="button-group">
+                    <button type="button" id="autocompleteBtn" class="btn btn-secondary">
+                        ✨ 자동완성 OFF
+                    </button>
+                    <button type="submit" id="generateBtn" class="btn btn-primary">
+                        🚀 전송 (포스트 생성)
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- 결과 영역 -->
+        <div id="resultSection" style="display: none;">
+            <h2>📝 생성된 블로그 포스트</h2>
+            <div id="generatedPost" class="result-box"></div>
+            <button type="button" id="copyBtn" class="btn btn-secondary">📋 복사하기</button>
+        </div>
+
+        <!-- 로딩 스피너 -->
+        <div id="loadingSpinner" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>AI가 블로그 포스트를 생성 중입니다...</p>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html> 
